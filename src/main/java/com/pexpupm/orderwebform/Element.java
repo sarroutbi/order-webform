@@ -11,7 +11,9 @@ public class Element {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
-
+  public long getId() {
+	  return id;
+  }
   public Element() {
 	  super();
   }
