@@ -14,6 +14,7 @@ public class Element {
   public long getId() {
 	  return id;
   }
+
   public Element() {
 	  super();
   }
