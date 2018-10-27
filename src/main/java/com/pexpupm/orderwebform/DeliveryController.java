@@ -35,6 +35,7 @@ public class DeliveryController {
 
 	@RequestMapping("/")
 	public String tablon(Model model) {
+		deliveries.clear();
 		for (Delivery delivery : deliveryRepository.findAll()) {
 			System.out.println("- Delivery:" + delivery.getName());
 			deliveries.add(delivery);
@@ -47,13 +48,17 @@ public class DeliveryController {
 		return "all_deliveries";
 	}
 
-//	@RequestMapping("/delivery/new")
-//	public String nuevoAnuncio(Model model, Delivery delivery) {
-//		deliveries.add(delivery);
-//		// TODO: persist
-//		return "delivery_correctly_stored";
-//
-//	}
+	@RequestMapping("/delivery/new")
+	public String nuevoAnuncio(Model model, Delivery delivery) {
+		System.out.println("New Delivery!!! Name:" + delivery.getName());
+		for (Element elem : delivery.getElements()) {
+			System.out.println("  * Elem:" + elem.getName());
+		}
+		deliveries.add(delivery);
+		deliveryRepository.save(delivery);
+		model.addAttribute("delivery", delivery);
+		return "delivery_correctly_stored";
+	}
 //
 //	@RequestMapping("/delivery/{delivery_id}")
 //	public String showDelivery(Model model, @PathVariable int delivery_id) {
