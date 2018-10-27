@@ -4,7 +4,10 @@
 	<h3>Listado de pedidos</h3>
 	{{#deliveries}}
 	<p><a href="delivery/{{id}}">{{name}}</a><br></p>
-	{{/deliveries}}    
+	{{/deliveries}}
+	{{^deliveries}}
+	<p>Todavía no hay pedidos que mostrar</p>
+	{{/deliveries}}
 	<br>
 	<form action="newDelivery.html">
 		<button type="submit">Nuevo Pedido</button>
