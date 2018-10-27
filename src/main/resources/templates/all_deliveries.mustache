@@ -1,0 +1,11 @@
+<html>
+<body>
+	<!-- TODO: add internationalization -->
+	<h1>Listado de pedidos</h1>
+	{{#deliveries}}
+	<a href="delivery/{{-index}}">{{name}}</a><br>
+	{{/deliveries}}    
+	<br>
+	<a href="newDelivery.html">New Delivery</a>
+</body>
+</html>
