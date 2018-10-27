@@ -1,9 +1,9 @@
 <html>
 <body>
 	<!-- TODO: add internationalization -->
-	<h1>Listado de pedidos</h1>
+	<h3>Listado de pedidos</h3>
 	{{#deliveries}}
-	<a href="delivery/{{-index}}">{{name}}</a><br>
+	<p><a href="delivery/{{id}}">{{name}}</a><br></p>
 	{{/deliveries}}    
 	<br>
 	<form action="newDelivery.html">
