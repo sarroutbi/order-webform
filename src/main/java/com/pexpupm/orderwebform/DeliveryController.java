@@ -3,34 +3,45 @@ package com.pexpupm.orderwebform;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DeliveryController {
+	
+	@Autowired
+	private DeliveryRepository deliveryRepository;
+
+	@Autowired
+	private ElementRepository elementRepository;
 
 	private List<Delivery> deliveries = new ArrayList<>();
 
 	public DeliveryController() {
-		// TODO: Quit this non persisted Deliveries
-		Delivery delivery1 = new Delivery("NP_delivery1");
-		Delivery delivery2 = new Delivery("NP_delivery2");
-		Element cola = new Element("NP_Cola");
-		Element milk = new Element("NP_Milk");
-		Element sugar = new Element("NP_Sugar");
-		cola.setDelivery(delivery1);
-		milk.setDelivery(delivery1);
-		sugar.setDelivery(delivery2);
-		deliveries.add(delivery1);
-		deliveries.add(delivery2);
+		// TODO: Quit comment to add non persisted Deliveries
+//		Delivery delivery1 = new Delivery("NP_delivery1");
+//		Delivery delivery2 = new Delivery("NP_delivery2");
+//		Element cola = new Element("NP_Cola");
+//		Element milk = new Element("NP_Milk");
+//		Element sugar = new Element("NP_Sugar");
+//		cola.setDelivery(delivery1);
+//		milk.setDelivery(delivery1);
+//		sugar.setDelivery(delivery2);
+//		deliveries.add(delivery1);
+//		deliveries.add(delivery2);
 	}
 
 	@RequestMapping("/")
 	public String tablon(Model model) {
-		// TODO: Quit NP and Read from persistence the list of deliveries
-		
+		for (Delivery delivery : deliveryRepository.findAll()) {
+			System.out.println("- Delivery:" + delivery.getName());
+			deliveries.add(delivery);
+			for(Element elem: elementRepository.findByDeliveryName(delivery.getName())) {
+				System.out.println("  * Elem:" + elem.getName());
+			}
+		}
 		// Add to model
 		model.addAttribute("deliveries", deliveries);
 		return "all_deliveries";

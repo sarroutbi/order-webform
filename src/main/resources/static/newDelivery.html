@@ -1,0 +1,25 @@
+<html>
+<script type="text/javascript">
+var elementNumber = 2;
+function addElement()
+{
+	var delivery = document.getElementById("element_div");
+    delivery.insertAdjacentHTML("beforeend", "Elemento:<input type=\"text\" name=\"id\"" + elementNumber + " /><br>");
+    elementNumber++;
+}
+</script>
+<body>
+	<!-- TODO: add internationalization -->
+	<h1>Nuevo Pedido</h1>
+	<form id="new_delivery" action="delivery/new" method="post">
+		<div id="delivery_div">
+			Nombre del pedido:<input type="text" name="deliveryName"/>
+		</div>
+		<div id="element_div">
+			Elemento:<input type="text" name="id1"/><br>
+		</div>
+		<button type="button" onclick="addElement();">Añadir Elemento</button>
+		<button type="submit">Crear Pedido</button>
+	</form>
+</body>
+</html>
