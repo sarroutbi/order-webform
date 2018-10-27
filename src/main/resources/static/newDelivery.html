@@ -1,17 +1,18 @@
 <html>
+
 <script type="text/javascript" src="jscripts.js"></script>
 <body>
 	<!-- TODO: add internationalization -->
 	<h1>Nuevo Pedido</h1>
 	<form id="new_delivery" action="delivery/new" method="post">
 		<div id="delivery_div">
-			Nombre del pedido:<input type="text" name="name"/>
+			Nombre del pedido:<input type="text" id="delivery_name" name="name" onkeyup="buttonDisable();"/>
 		</div>
 		<div id="element_div">
-			Elemento:<input type="text" name="elements"/><br>
+			Elemento:<input type="text" id="1" name="elements" onkeyup="buttonDisable();"/><br>
 		</div>
 		<button type="button" onclick="addElement();">Añadir Elemento</button>
-		<button type="submit">Crear Pedido</button>
+		<button type="submit" id="submit_button" disabled>Crear Pedido</button>
 	</form>
 </body>
 </html>

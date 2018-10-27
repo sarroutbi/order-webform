@@ -23,28 +23,13 @@ public class DeliveryController {
 	private List<Delivery> deliveries = new ArrayList<>();
 
 	public DeliveryController() {
-		// TODO: Quit comment to add non persisted Deliveries
-//		Delivery delivery1 = new Delivery("NP_delivery1");
-//		Delivery delivery2 = new Delivery("NP_delivery2");
-//		Element cola = new Element("NP_Cola");
-//		Element milk = new Element("NP_Milk");
-//		Element sugar = new Element("NP_Sugar");
-//		cola.setDelivery(delivery1);
-//		milk.setDelivery(delivery1);
-//		sugar.setDelivery(delivery2);
-//		deliveries.add(delivery1);
-//		deliveries.add(delivery2);
 	}
 
 	@RequestMapping("/")
-	public String tablon(Model model) {
+	public String showDeliveries(Model model) {
 		deliveries.clear();
 		for (Delivery delivery : deliveryRepository.findAll()) {
-			System.out.println("- Delivery:" + delivery.getName());
 			deliveries.add(delivery);
-			for(Element elem: elementRepository.findByDeliveryName(delivery.getName())) {
-				System.out.println("  * Elem:" + elem.getName());
-			}
 		}
 		// Add to model
 		model.addAttribute("deliveries", deliveries);
@@ -52,13 +37,11 @@ public class DeliveryController {
 	}
 
 	@RequestMapping("/delivery/new")
-	public String nuevoAnuncio(Model model, Delivery delivery, @RequestParam String[] elements) {
-		System.out.println("New Delivery!!! Name:" + delivery.getName());
+	public String newDelivery(Model model, Delivery delivery, @RequestParam String[] elements) {
 		for (String elem : elements) {
 			Element element = new Element(elem);
 			element.setDelivery(delivery);
 			delivery.getElements().add(element);
-			System.out.println(" * Elem:" + elem);
 		}
 		deliveries.add(delivery);
 		deliveryRepository.save(delivery);
@@ -80,7 +63,6 @@ public class DeliveryController {
 		}
 		model.addAttribute("delivery_id", delivery_id);
 		return "delivery_id_not_found";
-		//Delivery delivery = deliveries.get(delivery_id - 1);
 	}
 }
 
