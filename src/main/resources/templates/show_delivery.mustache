@@ -28,16 +28,16 @@
 			<table class="table table-striped table-condensed">
 			<tbody>
 			<form action="/delivery/delete/{{delivery.id}}" id="delete_delivery" onsubmit="return confirm('Seguro?');">
-				<button type="submit">Borrar Pedido</button>
+				<button type="submit" class="btn btn-danger">Borrar Pedido</button>
 			</form>
 			<form action="/delivery/modify/{{delivery.id}}">
-				<button type="submit">Modificar Pedido</button>
-			</form>
-			<form action="/">
-				<button type="submit">Volver a Listado de Pedidos</button>
+				<button type="submit" class="btn btn-primary">Modificar Pedido</button>
 			</form>
 			</tbody>
 			</table>
+			<form action="/">
+				<button type="submit" class="btn-link">Volver a Listado de Pedidos</button>
+			</form>
 		</div>
 	</div>
 </body>
