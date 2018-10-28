@@ -1,0 +1,21 @@
+<html>
+<meta charset="UTF-8">
+<body>
+	<!-- TODO: add internationalization -->
+	<h1>Modificar Pedido</h1>
+	<form id="modify_delivery" action="/delivery/modify/commit/{{delivery.id}}" method="post">
+		<div id="delivery_div">
+			Nombre del pedido:<input type="text" name="name" value={{delivery.name}} id="delivery_name"/>
+		</div>
+		<div id="element_div">
+			{{#elements}}
+				<span><br>Elemento:</span>
+				<input type="text" id="{{id}}" value="{{name}}" name="elements"/>
+			{{/elements}}
+		</div>
+		<button type="submit" id="submit_button">Actualizar Pedido</button>
+	<form action="/">
+		<button type="submit">Volver al Listado de Pedidos</button>
+	</form>
+</body>
+</html>

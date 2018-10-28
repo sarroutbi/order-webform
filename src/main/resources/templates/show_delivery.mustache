@@ -8,10 +8,13 @@
 	{{/elements}}    
 	<br>
 	<form action="/delivery/delete/{{delivery.id}}" id="delete_delivery" onsubmit="return confirm('Seguro?');">
-		<button type="submit">Borrar</button>
+		<button type="submit">Borrar Pedido</button>
+	</form>
+	<form action="/delivery/modify/{{delivery.id}}">
+		<button type="submit">Modificar Pedido</button>
 	</form>
 	<form action="/">
-		<button type="submit">Volver</button>
+		<button type="submit">Volver a Listado de Pedidos</button>
 	</form>
 </body>
 </html>

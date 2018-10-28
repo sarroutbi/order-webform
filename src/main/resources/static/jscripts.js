@@ -19,6 +19,8 @@ function deleteElement(button) {
 			}
 		}
 	}
+	// After deletion, check if button must be disabled/enabled
+	buttonDisabledOrEnabled();
 }
 
 function addElement()
@@ -34,23 +36,26 @@ function addElement()
 		}
 	}
 
-    delivery.insertAdjacentHTML("beforeend", "<span id=\"elem_label" + elementNumber + "\"><br>Elemento: </span><input type=\"text\" onkeyup=\"buttonDisable();\" name=\"elements\" id=\"" +
+    delivery.insertAdjacentHTML("beforeend", "<span id=\"elem_label" + elementNumber + "\"><br>Elemento: </span><input type=\"text\" onkeyup=\"buttonDisabledOrEnabled();\" name=\"elements\" id=\"" +
 		elementNumber + "\" /> <button type=\"button\" id=\"delete_button" + elementNumber +"\" onclick=\"deleteElement(this);\">Borrar Elemento</button>");
 	document.getElementById('submit_button').disabled = true;
     elementNumber++;
     elementCounter++;
 }
 
-function buttonDisable() {
+function buttonDisabledOrEnabled() {
+	console.log("ESERGBR - Checking Submit button");
 	for(var element=1; element<elementNumber; element++) {
 		var elemText = document.getElementById(element.toString());
 		if(elemText != null && elemText.value === "") {
 			document.getElementById('submit_button').disabled = true;
+			console.log("ESERGBR - Submit button disabled:" + elementText);
 			return false;
 		}
 	}
 	if(document.getElementById("delivery_name").value === "") {
 		document.getElementById('submit_button').disabled = true;
+		console.log("ESERGBR - Submit button disabled, empty delivery name");
 		return false;
 	}
 	document.getElementById('submit_button').disabled = false;

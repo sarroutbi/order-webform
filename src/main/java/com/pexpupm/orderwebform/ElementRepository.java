@@ -8,4 +8,5 @@ public interface ElementRepository extends CrudRepository<Element, Long> {
 	Element findByName(String name);
 	Element findByNameAndDeliveryName(String name, String deliveryName);
 	List<Element> findByDeliveryName(String delivery);
+	List<Element> findByDeliveryId(Long id);
 }

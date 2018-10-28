@@ -76,5 +76,43 @@ public class DeliveryController {
 		model.addAttribute("delivery_id", delivery_id);
 		return "delivery_id_not_found";
 	}
+
+	@RequestMapping("/delivery/modify/{delivery_id}")
+	public String modifyDelivery(Model model, @PathVariable Long delivery_id) {
+		Optional<Delivery> delivery = deliveryRepository.findById(delivery_id);
+		if (delivery.isPresent()) {
+			model.addAttribute("delivery", delivery.get());
+			List<Element> elem_list = new ArrayList<Element>();
+			for(Element elem: elementRepository.findByDeliveryName(delivery.get().getName())) {
+				elem_list.add(elem);
+			}
+			model.addAttribute("elements", elem_list);
+			return "show_modifyable_delivery";
+		}
+		model.addAttribute("delivery_id", delivery_id);
+		return "delivery_id_not_found";
+	}
+
+	@RequestMapping("/delivery/modify/commit/{delivery_id}")
+	public String commitModifyDelivery(Model model, @PathVariable Long delivery_id,
+			Delivery delivery, @RequestParam String[] elements) {
+		Optional<Delivery> deliveryPersisted = deliveryRepository.findById(delivery_id);
+		if (deliveryPersisted.isPresent()) {
+			for(Element elem: elementRepository.findByDeliveryId(deliveryPersisted.get().getId())) {
+				elementRepository.deleteById(elem.getId());
+			}
+			for (String elem : elements) {
+				Element element = new Element(elem);
+				element.setDelivery(deliveryPersisted.get());
+				deliveryPersisted.get().getElements().add(element);
+			}
+			deliveryPersisted.get().setName(delivery.getName());
+			deliveryRepository.save(deliveryPersisted.get());
+			model.addAttribute("delivery", deliveryPersisted.get());
+			return "delivery_correctly_modified";
+		}
+		model.addAttribute("delivery_id", delivery_id);
+		return "delivery_id_not_found";
+	}
 }
 
