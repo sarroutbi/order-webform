@@ -6,6 +6,9 @@
 	<p>Elemento:{{name}}</p>
 	{{/elements}}    
 	<br>
+	<form action="/delivery/delete/{{delivery.id}}" id="delete_delivery" onsubmit="return confirm('Seguro?');">
+		<button type="submit">Borrar</button>
+	</form>
 	<form action="/">
 		<button type="submit">Volver</button>
 	</form>

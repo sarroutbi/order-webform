@@ -64,5 +64,17 @@ public class DeliveryController {
 		model.addAttribute("delivery_id", delivery_id);
 		return "delivery_id_not_found";
 	}
+
+	@RequestMapping("/delivery/delete/{delivery_id}")
+	public String deleteDelivery(Model model, @PathVariable Long delivery_id) {
+		Optional<Delivery> delivery = deliveryRepository.findById(delivery_id);
+		if (delivery.isPresent()) {
+			model.addAttribute("delivery", delivery.get());
+			deliveryRepository.delete(delivery.get());
+			return "delivery_correctly_deleted";
+		}
+		model.addAttribute("delivery_id", delivery_id);
+		return "delivery_id_not_found";
+	}
 }
 
