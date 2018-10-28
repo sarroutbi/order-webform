@@ -87,6 +87,7 @@ public class DeliveryController {
 				elem_list.add(elem);
 			}
 			model.addAttribute("elements", elem_list);
+			model.addAttribute("elements_length", elem_list.size());
 			return "show_modifyable_delivery";
 		}
 		model.addAttribute("delivery_id", delivery_id);

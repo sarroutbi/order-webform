@@ -1,5 +1,10 @@
-var elementNumber = 2;
+var nextElementNumber = 2;
 var elementCounter = 1;
+
+function setNextElementNumber(elemNumber) {
+	nextElementNumber = elemNumber+1;
+	elementCounter = elemNumber;
+}
 
 function deleteElement(button) {
 	var textId = button.id.substring('delete_button'.length);
@@ -11,7 +16,7 @@ function deleteElement(button) {
 	elemLabelElement.parentNode.removeChild(elemLabelElement);
 	elementCounter--;
 	if(elementCounter === 1) {
-		for(var element=1; element<elementNumber; element++) {
+		for(var element=1; element<nextElementNumber; element++) {
 			var deleteButtonId = "delete_button"+element.toString();
 			var deleteButton = document.getElementById(deleteButtonId);
 			if(deleteButton != null) {
@@ -27,7 +32,7 @@ function addElement()
 {
 	var delivery = document.getElementById("element_div");
 	if(elementCounter === 1) {
-		for(var element=1; element<elementNumber; element++) {
+		for(var element=1; element<nextElementNumber; element++) {
 			elementId = element.toString();
 			var pendingElement = document.getElementById(elementId);
 			if(pendingElement != null) {
@@ -36,26 +41,23 @@ function addElement()
 		}
 	}
 
-    delivery.insertAdjacentHTML("beforeend", "<span id=\"elem_label" + elementNumber + "\"><br>Elemento: </span><input type=\"text\" onkeyup=\"buttonDisabledOrEnabled();\" name=\"elements\" id=\"" +
-		elementNumber + "\" /> <button type=\"button\" id=\"delete_button" + elementNumber +"\" onclick=\"deleteElement(this);\">Borrar Elemento</button>");
+    delivery.insertAdjacentHTML("beforeend", "<span id=\"elem_label" + nextElementNumber + "\"><br>Elemento: </span><input type=\"text\" onkeyup=\"buttonDisabledOrEnabled();\" name=\"elements\" id=\"" +
+		nextElementNumber + "\" /> <button type=\"button\" id=\"delete_button" + nextElementNumber +"\" onclick=\"deleteElement(this);\">Borrar Elemento</button>");
 	document.getElementById('submit_button').disabled = true;
-    elementNumber++;
+    nextElementNumber++;
     elementCounter++;
 }
 
 function buttonDisabledOrEnabled() {
-	console.log("ESERGBR - Checking Submit button");
-	for(var element=1; element<elementNumber; element++) {
+	for(var element=1; element<nextElementNumber; element++) {
 		var elemText = document.getElementById(element.toString());
 		if(elemText != null && elemText.value === "") {
 			document.getElementById('submit_button').disabled = true;
-			console.log("ESERGBR - Submit button disabled:" + elementText);
 			return false;
 		}
 	}
 	if(document.getElementById("delivery_name").value === "") {
 		document.getElementById('submit_button').disabled = true;
-		console.log("ESERGBR - Submit button disabled, empty delivery name");
 		return false;
 	}
 	document.getElementById('submit_button').disabled = false;
