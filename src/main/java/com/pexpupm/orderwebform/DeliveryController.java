@@ -55,7 +55,7 @@ public class DeliveryController {
 		if (delivery.isPresent()) {
 			model.addAttribute("delivery", delivery.get());
 			List<Element> elem_list = new ArrayList<Element>();
-			for(Element elem: elementRepository.findByDeliveryName(delivery.get().getName())) {
+			for(Element elem: elementRepository.findByDeliveryId(delivery.get().getId())) {
 				elem_list.add(elem);
 			}
 			model.addAttribute("elements", elem_list);
@@ -83,7 +83,7 @@ public class DeliveryController {
 		if (delivery.isPresent()) {
 			model.addAttribute("delivery", delivery.get());
 			List<Element> elem_list = new ArrayList<Element>();
-			for(Element elem: elementRepository.findByDeliveryName(delivery.get().getName())) {
+			for(Element elem: elementRepository.findByDeliveryId(delivery.get().getId())) {
 				elem_list.add(elem);
 			}
 			model.addAttribute("elements", elem_list);
