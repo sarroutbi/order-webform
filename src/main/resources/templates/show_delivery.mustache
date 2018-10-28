@@ -1,20 +1,44 @@
 <html>
 <meta charset="UTF-8">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/justified-nav.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+	<link href="/css/signin.css" rel="stylesheet">
+</head>
 <body>
 	<!-- TODO: add internationalization -->
-	<h3>Pedido:{{delivery.name}}</h3>
-	{{#elements}}
-	<p>Elemento:{{name}}</p>
-	{{/elements}}    
-	<br>
-	<form action="/delivery/delete/{{delivery.id}}" id="delete_delivery" onsubmit="return confirm('Seguro?');">
-		<button type="submit">Borrar Pedido</button>
-	</form>
-	<form action="/delivery/modify/{{delivery.id}}">
-		<button type="submit">Modificar Pedido</button>
-	</form>
-	<form action="/">
-		<button type="submit">Volver a Listado de Pedidos</button>
-	</form>
+	<div class="well">
+        <h4>OrderWebForm</h4> <p>Página básica de creación de pedidos realizada con CSS Bootstrap, Javascript, HTML5 y JavaSpring como Backend</p>
+    </div>
+    <div class="container">
+		<div class="masthead">
+			<h3>Pedido:{{delivery.name}}</h3>
+			<div class="table-responsive">
+			<table class="table table-striped table-condensed">
+			<tbody>
+			{{#elements}}
+			<!--tr><td><p>Elemento:{{name}}</p></td></tr-->
+			<tr><td><p>{{name}}</p></td></tr>
+			{{/elements}}
+			</tbody>
+			</table>
+			<table class="table table-striped table-condensed">
+			<tbody>
+			<form action="/delivery/delete/{{delivery.id}}" id="delete_delivery" onsubmit="return confirm('Seguro?');">
+				<button type="submit">Borrar Pedido</button>
+			</form>
+			<form action="/delivery/modify/{{delivery.id}}">
+				<button type="submit">Modificar Pedido</button>
+			</form>
+			<form action="/">
+				<button type="submit">Volver a Listado de Pedidos</button>
+			</form>
+			</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

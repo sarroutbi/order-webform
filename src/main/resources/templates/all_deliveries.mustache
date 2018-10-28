@@ -1,17 +1,37 @@
 <html>
 <meta charset="UTF-8">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/justified-nav.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+	<link href="/css/signin.css" rel="stylesheet">
+</head>
 <body>
 	<!-- TODO: add internationalization -->
-	<h3>Listado de pedidos</h3>
-	{{#deliveries}}
-	<p><a href="delivery/{{id}}">{{name}}</a><br></p>
-	{{/deliveries}}
-	{{^deliveries}}
-	<p>Todavía no hay pedidos que mostrar</p>
-	{{/deliveries}}
-	<br>
-	<form action="newDelivery.html">
-		<button type="submit">Nuevo Pedido</button>
-	</form>
+	<div class="well">
+        <h4>OrderWebForm</h4> <p>Página básica de creación de pedidos realizada con CSS Bootstrap, Javascript, HTML5 y JavaSpring como Backend</p>
+    </div>
+	<div class="container">
+		<div class="masthead">
+			<h3>Listado de pedidos</h3>
+			<div class="table-responsive">
+			<table class="table table-striped table-condensed">
+			<tbody>
+			{{#deliveries}}
+				<tr><td><a href="delivery/{{id}}">{{name}}</a></td></tr>
+			{{/deliveries}}
+			{{^deliveries}}
+				<tr>Todavía no hay pedidos que mostrar</tr>
+			{{/deliveries}}
+			</tbody>
+			</table>
+			<br>
+			<form action="newDelivery.html">
+				<button type="submit" class="btn btn-lg btn-primary">Nuevo Pedido</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

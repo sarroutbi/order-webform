@@ -1,5 +1,13 @@
 <html>
 <meta charset="UTF-8">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/justified-nav.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+	<link href="/css/signin.css" rel="stylesheet">
+</head>
 <script type="text/javascript" src="/jscripts.js"></script>
 {{#elements.1}}
 <body onload="setNextElementNumber({{elements_length}});">
@@ -8,25 +16,32 @@
 <body>
 {{/elements.1}}
 	<!-- TODO: add internationalization -->
-	<h3>Modificar Pedido</h3>
-	<form id="modify_delivery" action="/delivery/modify/commit/{{delivery.id}}" method="post">
-		<div id="delivery_div">
-			Nombre del pedido:<input type="text" name="name" value={{delivery.name}} id="delivery_name" onkeyup="buttonDisabledOrEnabled();"/>
+	<div class="well">
+        <h4>OrderWebForm</h4> <p>Página básica de creación de pedidos realizada con CSS Bootstrap, Javascript, HTML5 y JavaSpring como Backend</p>
+    </div>
+    <div class="container">
+		<div class="masthead">
+			<h3>Modificar Pedido</h3>
+			<form id="modify_delivery" action="/delivery/modify/commit/{{delivery.id}}" method="post">
+				<div id="delivery_div">
+					Nombre del pedido:<input type="text" name="name" value={{delivery.name}} id="delivery_name" onkeyup="buttonDisabledOrEnabled();"/>
+				</div>
+				<div id="element_div">
+					{{#elements}}
+						<span id="elem_label{{-index}}"><br>Elemento:</span>
+						<input type="text" id="{{-index}}" value="{{name}}" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
+					{{#elements.1}}
+						<button type="button" id="delete_button{{-index}}" onclick="deleteElement(this);">Borrar Elemento</button>
+					{{/elements.1}}
+					{{/elements}}
+				</div>
+				<button type="button" onclick="addElement();">Añadir Elemento</button>
+				<button type="submit" id="submit_button">Actualizar Pedido</button>
+			</form>
+			<form action="/">
+				<button type="submit">Volver al Listado de Pedidos</button>
+			</form>
 		</div>
-		<div id="element_div">
-			{{#elements}}
-				<span id="elem_label{{-index}}"><br>Elemento:</span>
-				<input type="text" id="{{-index}}" value="{{name}}" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
-				{{#elements.1}}
-					<button type="button" id="delete_button{{-index}}" onclick="deleteElement(this);">Borrar Elemento</button>
-				{{/elements.1}}
-			{{/elements}}
-		</div>
-		<button type="button" onclick="addElement();">Añadir Elemento</button>
-		<button type="submit" id="submit_button">Actualizar Pedido</button>
-    </form>
-	<form action="/">
-		<button type="submit">Volver al Listado de Pedidos</button>
-	</form>
+    </div>
 </body>
 </html>

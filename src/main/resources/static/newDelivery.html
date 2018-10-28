@@ -1,19 +1,34 @@
 <html>
 <meta charset="UTF-8">
 <script type="text/javascript" src="jscripts.js"></script>
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/justified-nav.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+	<link href="/css/signin.css" rel="stylesheet">
+</head>
 <body>
 	<!-- TODO: add internationalization -->
-	<h3>Nuevo Pedido</h3>
-	<form id="new_delivery" action="delivery/new" method="post">
-		<div id="delivery_div">
-			Nombre del pedido:<input type="text" id="delivery_name" name="name" onkeyup="buttonDisabledOrEnabled();"/>
+	<div class="well">
+        <h4>OrderWebForm</h4> <p>Página básica de creación de pedidos realizada con CSS Bootstrap, Javascript, HTML5 y JavaSpring como Backend</p>
+    </div>
+    <div class="container">
+		<div class="masthead">
+			<h3>Nuevo Pedido</h3>
+			<form id="new_delivery" action="delivery/new" method="post">
+				<div id="delivery_div">
+					Nombre del pedido:<input type="text" id="delivery_name" name="name" onkeyup="buttonDisabledOrEnabled();"/>
+				</div>
+				<div id="element_div">
+					<span id="elem_label1"><br>Elemento:</span>
+					<input type="text" id="1" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
+				</div>
+				<button type="button" onclick="addElement();">Añadir Elemento</button>
+				<button type="submit" id="submit_button" disabled>Crear Pedido</button>
+			</form>
 		</div>
-		<div id="element_div">
-			<span id="elem_label1"><br>Elemento:</span>
-			<input type="text" id="1" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
-		</div>
-		<button type="button" onclick="addElement();">Añadir Elemento</button>
-		<button type="submit" id="submit_button" disabled>Crear Pedido</button>
-	</form>
+	</div>
 </body>
 </html>
