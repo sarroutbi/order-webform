@@ -1,5 +1,5 @@
 <html>
-
+<meta charset="UTF-8">
 <script type="text/javascript" src="jscripts.js"></script>
 <body>
 	<!-- TODO: add internationalization -->
@@ -9,7 +9,8 @@
 			Nombre del pedido:<input type="text" id="delivery_name" name="name" onkeyup="buttonDisable();"/>
 		</div>
 		<div id="element_div">
-			Elemento:<input type="text" id="1" name="elements" onkeyup="buttonDisable();"/><br>
+			<span id="elem_label1"><br>Elemento:</span>
+			<input type="text" id="1" name="elements" onkeyup="buttonDisable();"/>
 		</div>
 		<button type="button" onclick="addElement();">Añadir Elemento</button>
 		<button type="submit" id="submit_button" disabled>Crear Pedido</button>
