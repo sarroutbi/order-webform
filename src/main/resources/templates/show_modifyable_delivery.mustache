@@ -28,15 +28,23 @@
 				</div>
 				<div id="element_div">
 					{{#elements}}
-						<span id="elem_label{{-index}}"><br>Elemento:</span>
-						<input type="text" id="{{-index}}" value="{{name}}" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
+					    {{^checked}}
+							<br id="br{{-index}}"><input value="{{name}}" onchange="checkedChange(this);" type="checkbox" id="check{{-index}}" name="checkbox">
+							<span id="elem_label{{-index}}"></span>
+							<input type="text" id="{{-index}}" value="{{name}}" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
+						{{/checked}}
+						{{#checked}}
+							<br id="br{{-index}}"><input value="{{name}}" onchange="checkedChange(this);" type="checkbox" id="check{{-index}}" name="checkbox" checked>
+							<span id="elem_label{{-index}}"></span>
+							<input type="text" style="text-decoration: line-through;" id="{{-index}}" value="{{name}}" name="elements" onkeyup="buttonDisabledOrEnabled();"/>
+						{{/checked}}
 					{{#elements.1}}
-						<button type="button" id="delete_button{{-index}}" onclick="deleteElement(this);">Borrar Elemento</button>
+						<button type="button" id="delete_button{{-index}}" onclick="deleteElementModification(this);">Borrar Elemento</button>
 					{{/elements.1}}
 					{{/elements}}
 				</div>
 				<br>
-				<button type="button" onclick="addElement();">Añadir Elemento</button>
+				<button type="button" onclick="addElementModification();">Añadir Elemento</button>
 				<button type="submit" id="submit_button" class="btn btn-primary">Actualizar Pedido</button>
 			</form>
 			<form action="/">

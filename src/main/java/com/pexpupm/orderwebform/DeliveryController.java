@@ -1,14 +1,17 @@
 package com.pexpupm.orderwebform;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -94,9 +97,9 @@ public class DeliveryController {
 		return "delivery_id_not_found";
 	}
 
-	@RequestMapping("/delivery/modify/commit/{delivery_id}")
+	@RequestMapping(value = "/delivery/modify/commit/{delivery_id}", method = RequestMethod.POST)
 	public String commitModifyDelivery(Model model, @PathVariable Long delivery_id,
-			Delivery delivery, @RequestParam String[] elements) {
+			Delivery delivery, @RequestParam String[] elements, @RequestParam(value = "checkbox", required = false) List<String> checkbox) {
 		Optional<Delivery> deliveryPersisted = deliveryRepository.findById(delivery_id);
 		if (deliveryPersisted.isPresent()) {
 			for(Element elem: elementRepository.findByDeliveryId(deliveryPersisted.get().getId())) {
@@ -104,6 +107,13 @@ public class DeliveryController {
 			}
 			for (String elem : elements) {
 				Element element = new Element(elem);
+				element.setChecked(false);
+				if(checkbox != null) {
+					Set<String> set = new HashSet<String>(checkbox);
+					if (set.contains(elem))	{
+						element.setChecked(true);
+					}
+				}
 				element.setDelivery(deliveryPersisted.get());
 				deliveryPersisted.get().getElements().add(element);
 			}

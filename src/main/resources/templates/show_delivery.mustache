@@ -20,8 +20,12 @@
 			<table class="table table-striped table-condensed">
 			<tbody>
 			{{#elements}}
-			<!--tr><td><p>Elemento:{{name}}</p></td></tr-->
-			<tr><td><p>{{name}}</p></td></tr>
+				{{^checked}}
+				<tr><td><p>{{name}}</p></td></tr>
+				{{/checked}}
+				{{#checked}}
+				<tr><td><p style="text-decoration: line-through;">{{name}}</p></td></tr>
+				{{/checked}}
 			{{/elements}}
 			</tbody>
 			</table>

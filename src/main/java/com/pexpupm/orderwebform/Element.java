@@ -37,6 +37,14 @@ public class Element {
 	 this.delivery = delivery;
   }
 
+  public boolean getChecked() {
+	return checked;
+  }
+  public void setChecked(boolean checked) {
+	this.checked = checked;
+  }
+  private boolean checked;
+
   @ManyToOne
   private Delivery delivery;
 
