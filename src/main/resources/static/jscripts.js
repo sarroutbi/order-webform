@@ -16,7 +16,7 @@ function checkedChange(check) {
 	} else {
 		textElement.style.textDecoration = "none";
 	}
-	// If element has been checked, add element value to check
+	// Add element value to check
 	check.value = textElement.value;
 }
 
@@ -116,6 +116,14 @@ function addElementModification()
 function buttonDisabledOrEnabled() {
 	for(var element=1; element<nextElementNumber; element++) {
 		var elemText = document.getElementById(element.toString());
+		// Check if checkbox must be updated
+		var checkElementId = "check" + element.toString();
+		var checkElement = document.getElementById(checkElementId);
+		if(checkElement != null) {
+			// Update check value as text changes
+			checkElement.value = elemText.value;
+		}
+
 		if(elemText != null && elemText.value === "") {
 			document.getElementById('submit_button').disabled = true;
 			return false;

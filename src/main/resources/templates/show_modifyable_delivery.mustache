@@ -24,7 +24,7 @@
 			<h3>Modificar Pedido</h3>
 			<form id="modify_delivery" action="/delivery/modify/commit/{{delivery.id}}" method="post">
 				<div id="delivery_div">
-					Nombre del pedido:<input type="text" name="name" value={{delivery.name}} id="delivery_name" onkeyup="buttonDisabledOrEnabled();"/>
+					Nombre del pedido:<input type="text" name="name" value="{{delivery.name}}" id="delivery_name" onkeyup="buttonDisabledOrEnabled();"/>
 				</div>
 				<div id="element_div">
 					{{#elements}}
